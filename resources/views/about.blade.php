@@ -6,7 +6,7 @@
   <ul>
   @foreach ($articles as $article)
     <li>
-      <h4>{{ $article->title }}</h4>
+      <h4><a href="articles/{{ $article->id }}">{{ $article->title }}</a></h4>
       <p>{{ $article->excerpt }}</p>
     </li>
   @endforeach
