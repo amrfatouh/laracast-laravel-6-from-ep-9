@@ -6,7 +6,10 @@
   <title>Article {{ $article->id }}</title>
 </head>
 <body>
-  <h2>{{ $article->title }}</h2>
+  <h2>
+    {{ $article->title }}
+    <small><a href="/articles/{{ $article->id }}/edit">edit</a></small>
+  </h2>
   <p>{{ $article->body }}</p>
   <a href="/articles">back</a>
 </body>

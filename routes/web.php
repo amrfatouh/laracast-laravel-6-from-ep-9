@@ -20,6 +20,9 @@ Route::get('/about', function () {
   return view('about', ['articles' => $articles]);
 });
 
-Route::get('articles', 'ArticleController@index');
-
+Route::get('articles/create', 'ArticleController@create');
+Route::post('articles/create', 'ArticleController@store');
+Route::get('articles/{articleId}/edit', 'ArticleController@edit');
+Route::put('articles/{articleId}', 'ArticleController@update');
 Route::get('articles/{articleId}', 'ArticleController@show');
+Route::get('articles', 'ArticleController@index');
