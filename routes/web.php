@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts/{slug}', 'PostsController@show');
+Route::get('/about', function () {
+  return view('about');
+});
