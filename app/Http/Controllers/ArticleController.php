@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-  public function showOne($articleId)
+  public function index()
   {
-    $article = App\Article::find($articleId);
-    dd($article);
+    $articles = Article::all();
+    return view('articles.show', ['articles' => $articles]);
+  }
+
+  public function show($articleId)
+  {
+    $article = Article::find($articleId);
+    return view('articles.showOne', ['article' => $article]);
   }
 }

@@ -20,12 +20,6 @@ Route::get('/about', function () {
   return view('about', ['articles' => $articles]);
 });
 
-Route::get('articles', function () {
-  $articles = App\Article::all();
-  return view('articles.show', ['articles' => $articles]);
-});
+Route::get('articles', 'ArticleController@index');
 
-Route::get('articles/{articleId}', function ($articleId) {
-  $article = App\Article::find($articleId);
-  return view('articles.showOne', ['article' => $article]);
-});
+Route::get('articles/{articleId}', 'ArticleController@show');
