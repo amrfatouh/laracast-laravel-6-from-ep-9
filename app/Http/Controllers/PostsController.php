@@ -6,15 +6,10 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-  public function show($postId)
+  // connect to the database and get a post
+  public function show($slug)
   {
-    $posts = [
-      0 => "this is the 1st post",
-      1 => "this is the 2nd post"
-    ];
-
-    if (!array_key_exists($postId, $posts)) abort(404, "this item doesn not exist");
-
-    return $posts[$postId];
+    $post = \DB::table('posts')->where('slug', $slug)->first();
+    return view('newpage', ['post' => $post]);
   }
 }

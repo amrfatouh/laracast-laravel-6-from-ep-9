@@ -6,6 +6,6 @@
   <title>New Page</title>
 </head>
 <body>
-  {{ $post }}
+  {{ $post->body }}
 </body>
 </html>
