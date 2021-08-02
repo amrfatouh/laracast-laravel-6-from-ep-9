@@ -16,5 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-  return view('about');
+  $articles = App\Article::latest()->get();
+  return view('about', ['articles' => $articles]);
 });
