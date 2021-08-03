@@ -23,7 +23,7 @@ class ArticleController extends Controller
 
   public function create()
   {
-    return view('articles.create');
+    return view('articles.create', ['tags' => \App\Tag::all()]);
   }
 
   public function edit(Article $article)
@@ -35,14 +35,18 @@ class ArticleController extends Controller
   {
     $request->validate([
       'title' => "required",
-      'body' => 'required'
+      'body' => 'required',
+      'tags' => 'exists:tags,id'
     ]);
 
     $article = Article::create([
       'title' => request('title'),
       'body' => request('body'),
-      'excerpt' => substr(request('body'), 0, 70) . ((strlen(request('body')) > 70) ? '...' : '')
+      'excerpt' => substr(request('body'), 0, 70) . ((strlen(request('body')) > 70) ? '...' : ''),
+      'user_id' => 2
     ]);
+    $article->tags()->attach(request('tags'));
+
     return redirect()->route('articles.show', ['article' => $article->id]);
   }
 

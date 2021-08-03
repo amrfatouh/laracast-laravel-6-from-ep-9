@@ -18,6 +18,16 @@
     @error('body')
       <div style="color: red"><small>body is required</small></div>
     @enderror
+    <label for="tags">Tags</label>
+    <select name="tags[]" id="tags" multiple>
+      @foreach ($tags as $tag)
+        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+      @endforeach
+    </select>
+    @error('tags')
+    <div style="color: red"><small>{{ $message }}</small></div>
+    @enderror
+    <br>
     <input type="submit" value="submit">
   </form>
   <a href="{{ route('articles.index') }}">back</a>
