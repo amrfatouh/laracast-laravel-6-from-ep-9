@@ -17,6 +17,9 @@ use Illuminate\Support\Str;
 |
 */
 
+// in php artisan tinker:
+// factory(App\User::class, 5)->create() ===> creates 5 users
+
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
