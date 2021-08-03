@@ -14,9 +14,8 @@ class ArticleController extends Controller
     return view('articles.show', ['articles' => $articles]);
   }
 
-  public function show($articleId)
+  public function show(Article $article)
   {
-    $article = Article::find($articleId);
     return view('articles.showOne', ['article' => $article]);
   }
 
@@ -25,9 +24,8 @@ class ArticleController extends Controller
     return view('articles.create');
   }
 
-  public function edit($articleId)
+  public function edit(Article $article)
   {
-    $article = Article::find($articleId);
     return view('articles.edit', ['article' => $article]);
   }
 
@@ -38,26 +36,27 @@ class ArticleController extends Controller
       'body' => 'required'
     ]);
 
-    $article = new Article;
-    $article->title = request('title');
-    $article->body = request('body');
-    $article->excerpt = substr(request('body'), 0, 70) . ((strlen(request('body')) > 70) ? '...' : '');
-    $article->save();
-    return redirect("/articles/$article->id");
+    $article = Article::create([
+      'title' => request('title'),
+      'body' => request('body'),
+      'excerpt' => substr(request('body'), 0, 70) . ((strlen(request('body')) > 70) ? '...' : '')
+    ]);
+    return redirect()->route('articles.show', ['article' => $article->id]);
   }
 
-  public function update($articleId, Request $request)
+  public function update(Article $article, Request $request)
   {
     $request->validate([
       'title' => "required",
       'body' => 'required'
     ]);
 
-    $article = Article::find($articleId);
-    $article->title = request('title');
-    $article->body = request('body');
-    $article->excerpt = substr(request('body'), 0, 70) . ((strlen(request('body')) > 70) ? '...' : '');
+    $article->fill([
+      'title' => request('title'),
+      'body' => request('body'),
+      'excerpt' => substr(request('body'), 0, 70) . ((strlen(request('body')) > 70) ? '...' : ''),
+    ]);
     $article->save();
-    return redirect("/articles/$article->id");
+    return redirect(route('articles.show', ['article' => $article->id]));
   }
 }

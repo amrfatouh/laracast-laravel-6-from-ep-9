@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-  <form action="/articles/create" method="POST">
+  <form action="{{ route('articles.create') }}" method="POST">
     @csrf
     <div>
       <label for="title">Title</label>
@@ -13,14 +13,12 @@
 
     <div>
       <label for="body">Body</label>
-      <textarea name="body" id="body" rows="7" cols="50" style="@error('body') border:1px solid red @enderror">
-        {{ old('body') }}
-      </textarea>
+      <textarea name="body" id="body" rows="7" cols="50" style="@error('body') border:1px solid red @enderror">{{ old('body') }}</textarea>
     </div>
     @error('body')
       <div style="color: red"><small>body is required</small></div>
     @enderror
     <input type="submit" value="submit">
   </form>
-  <a href="/articles">back</a>
+  <a href="{{ route('articles.index') }}">back</a>
 @endsection
