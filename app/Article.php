@@ -12,4 +12,9 @@ class Article extends Model
   {
     return $this->belongsTo(\App\User::class, 'user_id');
   }
+
+  public function tags()
+  {
+    return $this->belongsToMany(Tag::class);
+  }
 }
