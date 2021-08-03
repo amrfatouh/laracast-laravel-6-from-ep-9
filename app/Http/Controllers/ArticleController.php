@@ -10,7 +10,9 @@ class ArticleController extends Controller
 {
   public function index()
   {
-    $articles = Article::all();
+    $tag = request('tag');
+    if ($tag) $articles = \App\Tag::where('name', $tag)->first()->articles;
+    else $articles = \App\Article::all();
     return view('articles.show', ['articles' => $articles]);
   }
 
