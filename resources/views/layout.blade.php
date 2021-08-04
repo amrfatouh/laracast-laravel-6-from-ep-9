@@ -77,7 +77,7 @@
     <a class="{{ Request::path() === "/" ? 'active' : '' }}" href="/">home</a>&nbsp;
     <a class="{{ Request::path() === "about" ? 'active' : '' }}" href="/about">about us</a>&nbsp;
     <a class="{{ Request::path() === "articles" ? 'active' : '' }}" href="{{ route('articles.index') }}">articles</a>&nbsp;
-    <a href="#">contact us</a>
+    <a class="{{ Request::path() === "contact" ? 'active' : '' }}" href="{{ route('contact') }}">contact us</a>
   </header>
   @yield('content')
 </body>
