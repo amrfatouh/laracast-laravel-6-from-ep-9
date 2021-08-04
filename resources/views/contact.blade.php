@@ -5,7 +5,7 @@
   <form action="/contact" method="POST">
     @csrf
     <label for="email">E-mail</label>
-    <input type="text" name="email" id="email" autofocus>  
+    <input type="text" name="email" id="email" autofocus autocomplete="on">  
     @error('email')
       <div style="color: red; font-size: 0.8em">{{ $message }}</div>
     @enderror
