@@ -11,6 +11,8 @@
 |
 */
 
+use App\Mail\ContactMe;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,10 +28,7 @@ Route::get('/contact', function () {
 
 Route::post('/contact', function () {
   request()->validate(['email' => "required|email"]);
-  Mail::raw('Hello world', function ($message) {
-    $message->to(request('email'), 'Mr Wanderer');
-    $message->subject('Hello World');
-  });
+  Mail::to(request('email'))->send(new ContactMe('shirts'));
   return redirect(route('contact'))->with('message', 'E-mail sent');
 });
 
