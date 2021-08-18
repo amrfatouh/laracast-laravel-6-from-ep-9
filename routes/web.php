@@ -11,7 +11,9 @@
 |
 */
 
+use App\Image;
 use App\Mail\ContactMe;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,3 +40,8 @@ Route::get('articles/{article}/edit', 'ArticleController@edit')->name('articles.
 Route::put('articles/{article}', 'ArticleController@update');
 Route::get('articles/{article}', 'ArticleController@show')->name('articles.show');
 Route::get('articles', 'ArticleController@index')->name('articles.index');
+
+
+Route::get('images/create', 'ImageController@create');
+Route::get('images/index', 'ImageController@index');
+Route::post('images/create', 'ImageController@store');
